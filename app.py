@@ -31,7 +31,7 @@ def add_data():
         name = input('enter name:')
         rollno = input('enter roll num.:')
         course = input('enter course:')
-        age = input('enter age:')
+        age = int(input('enter age:'))
         if age<=0:
              print("Invalid age")
              return
@@ -113,8 +113,11 @@ def delete_data():
 
         query = "DELETE FROM students WHERE rollno = %s"
         cursor.execute(query,(roll,))
-
-        print("Data deleted successfully")    
+        if cursor.rowcount > 0:
+           print("Data deleted successfully")
+        else:
+           print("Roll number not found")
+    
         connect.commit()
         connect.close()
 
